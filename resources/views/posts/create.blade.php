@@ -7,11 +7,18 @@
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
     </head>
     <body>
-        <form method="post" action="">
+        <form method="POST" action="/posts">
+            @csrf
             <p>タイトル</p>
-            <input type="text" name="title">
+            <input type="text" name="title" value="{{ old('title') }}">
+            @error('title')
+                <p style="color : red;">{{ $message }}</p>
+            @enderror
             <p>本文</p>
-            <textarea name="body"></textarea><br/>
+            <textarea name="body">{{ old('body')}}</textarea><br/>
+            @error('body')
+                <p style="color : red;">{{ $message }}</p>
+            @enderror
             <input type="submit" value="保存">
         </form>
         <a href="/">戻る</a>
