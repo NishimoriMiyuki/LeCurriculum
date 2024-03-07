@@ -8,6 +8,7 @@
     </head>
     <body>
         <h1>Blog Name</h1>
+        <a href="/posts/create">投稿作成</a>
         <div class='posts'>
             @foreach ($posts as $post)
                 <div class='post'>
