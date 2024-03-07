@@ -7,15 +7,16 @@
         <link href="https://fonts.googleapis.com/css?family=Nunito:200,600" rel="stylesheet">
     </head>
     <body>
-        <form method="POST" action="/posts">
+        <form method="post" action="/posts/{{ $post->id }}">
+            @method('PUT')
             @csrf
             <p>タイトル</p>
-            <input type="text" name="title" value="{{ $post->title }}">
+            <input type="text" name="title" value="{{ old('title', $post->title) }}">
             @error('title')
                 <p style="color : red;">{{ $message }}</p>
             @enderror
             <p>本文</p>
-            <textarea name="body">{{ $post->body }}</textarea><br/>
+            <textarea name="body">{{ old('body', $post->body) }}</textarea><br/>
             @error('body')
                 <p style="color : red;">{{ $message }}</p>
             @enderror

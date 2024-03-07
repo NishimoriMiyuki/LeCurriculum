@@ -38,4 +38,14 @@ class PostController extends Controller
         
         return view('posts.edit')->with(['post' => $post]);
     }
+    
+    public function update(PostRequest $request, int $postId)
+    {
+        $post = Post::whereId($postId)->first();
+        $post->title = $request->title();
+        $post->body = $request->body();
+        $post->save();
+        
+        return redirect('/posts/'.$postId);
+    }
 }
