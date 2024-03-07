@@ -31,4 +31,11 @@ class PostController extends Controller
         $post->save();
         return redirect('/posts/' . $post->id);
     }
+    
+    public function edit(int $postId)
+    {
+        $post = Post::whereId($postId)->first();
+        
+        return view('posts.edit')->with(['post' => $post]);
+    }
 }
