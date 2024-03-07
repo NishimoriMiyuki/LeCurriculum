@@ -17,6 +17,11 @@
                     </h2>
                     <p class='body'>{{ $post->body }}</p><br/>
                     <a href="/posts/{{ $post->id }}/edit">編集</a>
+                    <form method="post" action="/posts/{{ $post->id }}">
+                        @method('delete')
+                        @csrf
+                        <input type="submit" value="削除" onclick='return confirm("削除しますか？")'>
+                    </form>
                 </div>
             @endforeach
         </div>

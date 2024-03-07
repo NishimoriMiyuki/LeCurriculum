@@ -23,7 +23,7 @@ class PostController extends Controller
         return view('posts.create');
     }
     
-    public function store(PostRequest $request, Post $post)
+    public function store(PostRequest $request)
     {
         $post = new Post();
         $post->title = $request->title();
@@ -47,5 +47,14 @@ class PostController extends Controller
         $post->save();
         
         return redirect('/posts/'.$postId);
+    }
+    
+    public function delete(int $postId)
+    {
+        $post = Post::whereId($postId)->first();
+        $post->is_deleted = true;
+        $post->save();
+        
+        return redirect('/');
     }
 }
